@@ -289,7 +289,6 @@ void question21(){
         return;
     }
 
-
     //start reading the source file data.
     printf("讀入的source.txt內容為\n");
     while(fscanf(source,"%d", &temp) != EOF){
@@ -357,12 +356,48 @@ void question22(){
     }
 }
 
+/*temporary giveup 23
 void question23(){
     int length = 0;
-    char data[100] = {0};
+    char *data;
+    int x = 0;
+    int y = 0;
+
+    //user basic input
+    printf("請輸入長度：");
+    scanf("%d", &length);
+    data = malloc(sizeof(char) * length);
+    printf("請輸入長度為%d的字串：", length);
+    scanf("%s", data);
+    
+
+    free(data);
     
 }
 
+void recursion(int length; int floor; char *charList; int *usedList; char *printList){
+    char *charList = charList;
+    if((length - floor) >= 1){
+        int x = 0;
+        for(x = 0; x < length - floor){
+
+            int temp = x;
+            while(*(usedList + temp) == 1){
+                temp++;
+            }
+            *(printList + floor) = *(charList + temp)
+            *(usedList + temp) = 1;
+            recursion(length, floor +1, charList, usedList, printList);
+        }
+    }else{
+        int x = 0;
+        for(x = 0; x < length; x++){
+            printf("%c", *(printList + x));
+        }
+        return;
+    }
+*/
+
 int main(){
-    question21();
+    
 }
