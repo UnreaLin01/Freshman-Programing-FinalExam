@@ -269,9 +269,53 @@ void question20(){
 }
 
 void question21(){
-    FILE *source  = fopen("./question21/source.txt","w");
-    FILE *even = fopen("./question21/even.txt","w");
-    FILE *odd = fopen("./question21/odd.txt","w");
+    FILE *source  = fopen("./question21/source.txt","r");
+    FILE *even = fopen("./question21/even.txt","w+");
+    FILE *odd = fopen("./question21/odd.txt","w+");
+    //char dataTemp[100] = {0};
+    int temp = 0;
+
+    //check whether the file can open.
+    if(source == NULL){
+        printf("cannot find source.txt file");
+        return;
+    }
+    if(even == NULL){
+        printf("cannot find even.txt file");
+        return;
+    }
+    if(odd == NULL){
+        printf("cannot find odd.txt file");
+        return;
+    }
+
+
+    //start reading the source file data.
+    printf("讀入的source.txt內容為\n");
+    while(fscanf(source,"%d", &temp) != EOF){
+        printf("%d ", temp);
+        if(temp % 2 == 0){
+            fprintf(even, "%d ", temp);
+        }else{
+            fprintf(odd, "%d ", temp);
+        }
+    }
+    printf("\n寫入odd.txt內容為\n");
+    //don't forget to set the position
+    fseek(odd, 0, SEEK_SET);
+    while(fscanf(odd, "%d", &temp) != EOF){
+        printf("%d ", temp);
+    }
+    
+    fseek(even, 0, SEEK_SET);
+    printf("\n寫入even.txt內容為\n");
+    while(fscanf(even, "%d", &temp) != EOF){
+        printf("%d ", temp);
+    }
+
+    fclose(source);
+    fclose(even);
+    fclose(odd);
 }
 
 void question22(){
