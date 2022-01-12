@@ -398,6 +398,25 @@ void recursion(int length; int floor; char *charList; int *usedList; char *print
     }
 */
 
+
+void question25(){
+    double pointA[2] = {0};
+    double pointB[2] = {0};
+    double length[2] = {0};
+
+    printf("請輸入左上角座標：");
+    scanf("%lf%lf", &pointA[0], &pointA[1]);
+    printf("請輸入右下角座標：");
+    scanf("%lf%lf", &pointB[0], &pointB[1]);
+    length[0] = pointA[0] - pointB[0];
+    length[1] = pointA[1] - pointB[1];
+
+    if(length[0] == length[1]){
+        printf("是正方形，長為%d，寬為%d", abs(length[0]), abs(length[1]));
+    }else{
+        printf("不是正方形，長為%d，寬為%d", abs(length[0]), abs(length[1]));
+    }
+}
 int main(){
-    
+    question25();
 }
