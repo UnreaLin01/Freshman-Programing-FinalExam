@@ -417,6 +417,50 @@ void question25(){
         printf("不是正方形，長為%d，寬為%d", abs(length[0]), abs(length[1]));
     }
 }
+
+//bubble sort!!! cannot forget!!!!
+void bubbleSort(double *array, int length){
+    int x = 0;
+    int y = 0;
+    for(x = 0; x < length - 1; x++){
+        for(y = 0; y < length - 1 - x; y++){
+            if(*(array + y) > *(array +y + 1)){
+                double temp = 0;
+                temp = *(array + y + 1);
+                *(array + y + 1) = *(array + y);
+                *(array + y) = temp;
+            }
+        }
+    }
+}
+
+void question27(){
+    FILE *file = fopen("./question27/data.txt", "r");
+    double data[1000] = {0};
+    int count = 0;
+    double median = 0;
+    
+    printf("讀取data.txt內容如下：\n");
+    while(fscanf(file, "%lf", &data[count]) != EOF){
+        printf("%2.2lf ", data[count]);
+        count++;
+    }
+    fclose(file);
+    
+    bubbleSort(data, 10);
+    //notice! the array index is start from 0
+    if(count % 2 == 0){
+        double firstNum = data[(count / 2) - 1];
+        double secondNum = data[(count / 2) + 1 - 1];
+        median = (firstNum + secondNum) / 2.00;
+        printf("\n中位數為%2.2lf (%2.2lf與%2.2lf的平均)", median, firstNum, secondNum);
+    }else{
+        median = data[(count + 1) / 2 - 1];
+        printf("\n中位數為%2.2lf", median);
+    }
+}
+
+
 int main(){
-    question25();
+    question27();
 }
