@@ -528,7 +528,65 @@ void question29(){
     fclose(file);
 }
 
+//subfunction for question 30
+int getStudentScore(char studentName[], char studentData[5][100], int scoreData[5]){
+    int x = 0;
+    int found = 0;
+    for(x = 0; x < 4; x++){
+        if(strcmp(studentName, studentData[x]) == 0){
+            printf("該生成績為%d",scoreData[x]);
+            found = 1;
+            break;
+        }
+    }
+    if(found == 0){
+        printf("找不到該名學生！");
+    }
+}
+
+void question30(){
+    char account[] = "admin";
+    char password[] = "passwd";
+    int finished = 0;
+    char student[5][100] = {0};
+    int score[5] = {0};
+    int x = 0;
+    char temp[100] = {0};
+
+    while(finished == 0){
+        char tempAccount[100] = {0};
+        char tempPassword[100] = {0};
+        printf("請輸入使用者帳號：");
+        scanf("%s", tempAccount);
+        printf("請輸入使用者密碼：");
+        scanf("%s", tempPassword); 
+
+        if(strcmp(tempAccount, account) == 0 && strcmp(tempPassword, password) == 0){
+            //unknown problem bruhhhhhhhhhhhh ._.
+            char sucess[] = "驗證成功\\0";
+            finished = 1;
+            printf("%s\n", sucess);
+        }else{
+            printf("驗證失敗，請重新輸入\n");
+        }
+    }
+
+    srand(time(NULL));
+    for(x = 0; x < 5; x++){
+        int temp = 0;
+        printf("請輸入學生%d姓名：", x + 1);
+        scanf("%s", student[x]);
+        temp = rand() % 101;
+        score[x] = temp;
+        printf("該生成績為%d\n", temp);
+    }
+
+    printf("\n請輸入查詢學生姓名：");
+    scanf("%s", temp);
+    getStudentScore(temp, student, score);
+}
+
 
 int main(){
-    question29();
+    question30();
 }
