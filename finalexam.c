@@ -460,7 +460,75 @@ void question27(){
     }
 }
 
+void getZigzagPath(int index, int *location){
+    int zigzagPath[8][8] = 
+    {{ 1,  2,  6,  7, 15, 16, 28, 29},
+     { 3,  5,  8, 14, 17, 27, 30, 43},
+     { 4,  9, 13, 18, 26, 31, 42, 44},
+     {10, 12, 19, 25, 32, 41, 45, 54},
+     {11, 20, 24, 33, 40, 46, 53, 55},
+     {21, 23, 34, 39, 47, 52, 56, 61},
+     {22, 35, 38, 48, 51, 57, 60, 62},
+     {36, 37, 49, 50, 58, 59, 63, 64}};
+
+    int x = 0;
+    int y = 0;
+
+    for(y = 0; y < 8; y++){
+        for(x = 0; x < 8; x++){
+            if(zigzagPath[y][x] == index){
+                *location = x;
+                *(location + 1) = y;
+                break;
+            }
+        }
+    }
+}
+
+void question29(){
+    FILE *file = fopen("./question29/block.txt", "r");
+    int rawData[8][8] = {0};
+    int processedData[8][8] = {0};
+    int count = 0;
+    int targetPos[2] = {0};
+
+    //save the data from block.txt
+    printf("讀入的block.txt內容為\n");
+    while(fscanf(file, "%d", &rawData[count / 8][count % 8]) != EOF){
+        printf("%3d" , rawData[count / 8][count % 8]);
+        count++;
+        if(count % 8 == 0){
+            printf("\n");
+        }
+    }
+
+
+    //use zigzagPath information to project raw data array to the processed data array
+    printf("ZigZag掃描結果為\n");
+    count = 0;
+    while(count < 64){
+        getZigzagPath(count + 1, targetPos);
+        processedData[targetPos[1]][targetPos[0]] = rawData[count / 8][count % 8];
+        count++;
+        if(count % 8 == 0){
+            printf("\n");
+        }
+    }
+
+    //print the processed data array to the terminal
+    count = 0;
+    while(count < 64){
+        printf("%3d" , processedData[count / 8][count % 8]);
+        count++;
+        if(count % 8 == 0){
+            printf("\n");
+        }
+    }
+
+    fclose(file);
+}
+
 
 int main(){
-    question27();
+    question29();
 }
