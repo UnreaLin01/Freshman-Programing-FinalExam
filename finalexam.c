@@ -623,9 +623,69 @@ void question24(){
     }
 
     printf("猜對了，遊戲勝利！");
+}
+
+//so many possibility that this code cannot deal all the situation
+void question26(){
+    char calculation[100] = {0};
+    char formula[5] = {0};
+    int bias = 0;
+    int x = 0;
+
+    int side = 0;//0 for left 1 for right
+    int left = 0;
+    int right = 0;
+    int startPrint = 0;
+
+    printf("inputs:\n");
+    fflush(stdin);
+    scanf("%s", calculation);
     
+    
+    for(x = 0; x < strlen(calculation); x++){
+        if(calculation[x] == '('){
+            left++;
+        }else if(calculation[x] == ')'){
+            right++;
+        }
+    }
+
+    if(left != right || left == 0 || right == 0){
+        printf("output:\nERROR INPUT");
+        return;
+    }
+
+    for(x = 0; x < strlen(calculation); x++){
+        if(calculation[x] == '('){
+            left--;
+            if(left == 0){
+                startPrint = 1;
+            }
+        }
+        if(startPrint == 1){
+            formula[bias] = calculation[x];
+            bias++;
+        }
+        if(startPrint == 1 && calculation[x] == ')'){
+            break;
+        }
+    }
+
+    printf("output:\n");
+    
+
+    if(formula[2] == '+'){
+        printf("%d+%d\n", (formula[1] - '0'), (formula[3] - '0'));
+        printf("%d", (formula[1] - '0') + (formula[3] - '0'));
+    }else if(formula[2] == '-'){
+        printf("%d-%d\n", (formula[1] - '0'), (formula[3] - '0'));
+        printf("%d", (formula[1] - '0') - (formula[3] - '0'));
+    }else if(formula[2] == '*'){
+        printf("%d*%d\n", (formula[1] - '0'), (formula[3] - '0'));
+        printf("%d", (formula[1] - '0') * (formula[3] - '0'));
+    }
 }
 
 int main(){
-    question24();
+    question26();
 }
