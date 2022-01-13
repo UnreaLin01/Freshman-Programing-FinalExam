@@ -728,5 +728,19 @@ void question28(){
 
 
 int main(){
-    question28();
+    question16();
+    question17();
+    question18();
+    question19();
+    question20();
+    question21();
+    question22();
+    //wtf question23();
+    question24();
+    question25();
+    question26();
+    question27();
+    question29();
+    question30();
+    
 }
