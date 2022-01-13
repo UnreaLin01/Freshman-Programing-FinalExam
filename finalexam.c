@@ -586,7 +586,46 @@ void question30(){
     getStudentScore(temp, student, score);
 }
 
+void question24(){
+    int answer = 0;
+    int range[2] = {0, 100};
+    int finished = 0;
+
+    printf("關主輸入終極密碼：");
+    scanf("%d", &answer);
+    printf("\n");
+
+    while(finished == 0){
+        int guess = 0;
+        int inputCorrect = 0;
+        printf("玩家輸入：");
+        scanf("%d", &guess);
+        if(guess > range[0] && guess < range[1]){
+            inputCorrect = 1;
+        }
+        while(inputCorrect == 0){
+            printf("不對區間，請重新輸入：");
+            scanf("%d", &guess);
+            if(guess > range[0] && guess < range[1]){
+                inputCorrect = 1;
+            }
+        }
+
+        if(guess == answer){
+            finished = 1;
+        }else if(guess > answer){
+            printf("比%d小\n", guess);
+            range[1] = guess;
+        }else{
+            range[0] = guess;
+            printf("比%d大\n", guess);
+        }
+    }
+
+    printf("猜對了，遊戲勝利！");
+    
+}
 
 int main(){
-    question30();
+    question24();
 }
