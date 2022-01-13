@@ -686,6 +686,47 @@ void question26(){
     }
 }
 
+void question28(){
+    int database[100][100] = {0};
+    int datanum = 0;
+    while(1){
+        int temp = 0;
+        int new = 1;
+        int x = 0;
+        int times = 0;
+        printf("¿é¤J¡G");
+        scanf("%d", &temp);
+
+        for(x = 0; x < datanum; x++){
+            if(temp == database[x][0]){
+                database[x][1]++;
+                new = 0;
+            }
+        }
+
+        if(new == 1){
+            database[datanum][0] = temp;
+            database[datanum][1] = 1;
+            datanum++;
+        }
+
+        for(x = 0; x < datanum; x++){
+            if(database[x][1] > times){
+                times = database[x][1];
+            }
+        }
+        
+        printf("²³¼Æ¡G");
+        for(x = 0; x < datanum; x++){
+            if(database[x][1] == times){
+                printf("%d ", database[x][0]);
+            }
+        }
+        printf("(%d)\n", times);
+    }
+}
+
+
 int main(){
-    question26();
+    question28();
 }
