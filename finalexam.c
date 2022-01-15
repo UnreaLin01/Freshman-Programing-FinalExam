@@ -268,6 +268,31 @@ void question20(){
     printf("公式解為：%d,%d",answer[0],answer[1]);
 }
 
+// binary mode write data and read data;
+void question21extend(){
+    FILE *source1 = fopen("./question21/source1.txt","w+b");
+    int data[] = {64, 128 , 256, 512, 1024, 4096, 8192, 16384};
+    int input[100] = {0};
+    int dataSize = 0;
+    int x = 0;
+    
+    fwrite(data, sizeof(int), sizeof(data), source1);
+
+    //know how many interger data should deal
+    fseek(source1, 0, SEEK_END);
+    dataSize = ftell(source1) / 16;
+    printf("%d\n", dataSize);
+
+    fseek(source1, 0, SEEK_SET);
+    fread(input, sizeof(int), dataSize, source1);
+    for(x = 0; x < dataSize; x++){
+        printf("%d\n", input[x]);
+    }
+    
+    fclose(source1);
+
+}
+
 void question21(){
     FILE *source  = fopen("./question21/source.txt","r");
     FILE *even = fopen("./question21/even.txt","w+");
@@ -728,6 +753,7 @@ void question28(){
 
 
 int main(){
+    /*
     question16();
     question17();
     question18();
@@ -742,5 +768,6 @@ int main(){
     question27();
     question29();
     question30();
-    
+    */
+    question21extend();
 }
